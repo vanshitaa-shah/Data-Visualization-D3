@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text-D3</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <svg width="1000" height="1000">
+        <text x="100" y="100" stroke="black" fill="black">Hello</text>
+      </svg> -->
+    </div>
+    <script>
+      const svg = d3
+        .select(".container")
+        .append("svg")
+        .attr("width", "500")
+        .attr("height", "500");
+
+      svg
+        .append("text")
+        .attr("x", 30)
+        .attr("y", 30)
+        .attr("fill", "blue")
+        .text("Hello World");
+    </script>
+  </body>
+</html>

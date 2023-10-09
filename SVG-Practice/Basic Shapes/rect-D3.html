@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <div class="svgcontainer"></div>
+    <script>
+      const width = 400;
+      const height = 400;
+      const svg = d3
+        .select(".svgcontainer")
+        .append("svg")
+        .attr("height", height)
+        .attr("width", width);
+      svg
+        .append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("height", 100)
+        .attr("width", 200)
+        .attr("fill", "black");
+    </script>
+  </body>
+</html>

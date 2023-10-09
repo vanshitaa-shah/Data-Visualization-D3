@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Transition</title>
+    <style>
+      body {
+        margin: 100px;
+      }
+      rect {
+        stroke: black;
+        fill: blue;
+        stroke-width: 10px;
+        transition: all 2000ms;
+      }
+
+      rect:hover {
+        fill: aquamarine;
+        stroke-width: 30px;
+        height: 250px;
+        /* stroke: rgb(141, 141, 169); */
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="500" height="500">
+      <rect x="10" y="10" width="300" height="200"></rect>
+    </svg>
+  </body>
+</html>

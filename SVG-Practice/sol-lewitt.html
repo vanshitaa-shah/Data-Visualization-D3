@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sol-Lewitt</title>
+
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"></div>
+
+    <script>
+      const width = innerWidth;
+      const height = innerHeight;
+
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("width", width);
+      svg.setAttribute("height", height);
+      document.body.appendChild(svg);
+
+      //Created the mask
+      const mask = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "mask"
+      );
+      mask.setAttribute("id", "circle-mask");
+      svg.appendChild(mask);
+
+      //Created the Masked Rect
+      const rectMask = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "rect"
+      );
+
+      rectMask.setAttribute("width", width);
+      rectMask.setAttribute("height", height);
+      rectMask.setAttribute("fill", "black");
+      mask.appendChild(rectMask);
+
+      //Created the circle in white pxs(visible)
+      const circle = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+
+      circle.setAttribute("cx", width / 2);
+      circle.setAttribute("cy", height / 2);
+      circle.setAttribute("r", 400);
+      circle.setAttribute("fill", "white");
+      mask.appendChild(circle);
+
+      // //Created the mask0-2
+      const mask2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "mask"
+      );
+      mask2.setAttribute("id", "circle-mask-2");
+      svg.appendChild(mask2);
+
+      //Created the rect-visible
+      const rectMask2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "rect"
+      );
+
+      rectMask2.setAttribute("width", width);
+      rectMask2.setAttribute("height", height);
+      rectMask2.setAttribute("fill", "white");
+      mask2.appendChild(rectMask2);
+
+      //Created the circle in black pxs(invisible)
+      const invisbleCircle2 = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+
+      invisbleCircle2.setAttribute("cx", width / 2);
+      invisbleCircle2.setAttribute("cy", height / 2);
+      invisbleCircle2.setAttribute("fill", "black");
+      invisbleCircle2.setAttribute("r", 400);
+      mask2.appendChild(invisbleCircle2);
+
+      //   horizontal bars
+      for (let i = 0; i < 100; i++) {
+        const rect = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        rect.setAttribute("y", i * 20);
+        rect.setAttribute("height", 10);
+        rect.setAttribute("width", width);
+        rect.setAttribute("mask", "url(#circle-mask)");
+        svg.appendChild(rect);
+      }
+
+      //vertical bars
+      for (let i = 0; i < 100; i++) {
+        const rect = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        rect.setAttribute("x", i * 20);
+        rect.setAttribute("height", height);
+        rect.setAttribute("width", 10);
+        rect.setAttribute("mask", "url(#circle-mask-2)");
+        svg.appendChild(rect);
+      }
+
+      //just for better understanding, change mask url from url(#circle-mask) to url(#circle-mask-2)
+      // const tempRect = document.createElementNS(
+      //   "http://www.w3.org/2000/svg",
+      //   "rect"
+      // );
+
+      // tempRect.setAttribute("width", 500);
+      // tempRect.setAttribute("height", 500);
+      // tempRect.setAttribute("fill", "red");
+      // tempRect.setAttribute("mask", "url(#circle-mask)");
+      // svg.appendChild(tempRect);
+    </script>
+  </body>
+</html>

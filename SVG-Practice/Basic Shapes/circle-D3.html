@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Circle-D3</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <div id="svgcontainer"></div>
+  </body>
+
+  <script>
+    const height = 300;
+    const width = 300;
+
+    const svg = d3
+      .select("#svgcontainer")
+      .append("svg")
+      .attr("height", height)
+      .attr("width", width);
+
+    svg
+      .append("circle")
+      .attr("cx", 50)
+      .attr("cy", 50)
+      .attr("r", 50)
+      .attr("fill", "none")
+      .style("stroke:'red'");
+  </script>
+</html>
