@@ -9,6 +9,7 @@
     <style>
       body {
         margin: 0;
+        overflow: hidden;
       }
     </style>
   </head>
@@ -48,10 +49,9 @@
         "http://www.w3.org/2000/svg",
         "circle"
       );
-
       circle.setAttribute("cx", width / 2);
       circle.setAttribute("cy", height / 2);
-      circle.setAttribute("r", 400);
+      circle.setAttribute("r", 300);
       circle.setAttribute("fill", "white");
       mask.appendChild(circle);
 
@@ -83,7 +83,7 @@
       invisbleCircle2.setAttribute("cx", width / 2);
       invisbleCircle2.setAttribute("cy", height / 2);
       invisbleCircle2.setAttribute("fill", "black");
-      invisbleCircle2.setAttribute("r", 400);
+      invisbleCircle2.setAttribute("r", 300);
       mask2.appendChild(invisbleCircle2);
 
       //   horizontal bars
