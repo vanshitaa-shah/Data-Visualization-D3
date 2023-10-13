@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <script>
+      const matrix = [
+        [11975, 5871, 8916, 2868],
+        [1951, 10048, 2060, 6171],
+        [8010, 16145, 8090, 8045],
+        [1013, 990, 940, 6907],
+      ];
+
+      d3.select("body")
+        .append("table")
+        .selectAll("tr")
+        .data(matrix)
+        .enter()
+        .append("tr")
+        .selectAll("td")
+        .data((d) => d)
+        .enter()
+        .append("td")
+        .text((d) => d)
+        .style("border:1px solid red");
+    </script>
+  </body>
+</html>
