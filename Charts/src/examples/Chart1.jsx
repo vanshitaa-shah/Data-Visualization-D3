@@ -25,10 +25,16 @@ const Chart1 = () => {
       .data([10, 55, 25, 5, 30])
       .join("rect")
       .attr("x", (d, i) => i * 45)
-      .attr("y", (d, i) => h - 5 * d)
       .attr("width", 40)
-      .attr("height", (d, i) => d * 5)
-      .attr("fill", "tomato");
+      .attr("fill", "tomato")
+      .attr("y", function () {
+        return h;
+      })
+      .attr("height", 0)
+      .transition()
+      .duration(800)
+      .attr("y", (d, i) => h - 3 * d)
+      .attr("height", (d, i) => d * 3);
 
     //prevents repeatation , removes previous instance
     return () => accessToRef.remove();

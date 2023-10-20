@@ -1,5 +1,6 @@
 html {
   font-family: sans-serif;
+  margin: 10px 100px;
 }
 
 #app {
@@ -9,7 +10,7 @@ html {
 
 #chart {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #chart,
@@ -24,7 +25,7 @@ html {
 }
 
 #data li {
-  padding: 1 rem;
+  padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   width: 10rem;
   display: flex;
