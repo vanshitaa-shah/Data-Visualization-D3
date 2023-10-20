@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Line Chart</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+  </head>
+  <body>
+    <svg width="500" height="300" id="chart"></svg>
+
+    <script>
+      // Sample data
+      const data = [
+        { date: "2023-01-01", value: 20 },
+        { date: "2023-02-01", value: 35 },
+        { date: "2023-03-30", value: 10 },
+        // Add more data points as needed
+      ];
+
+      // Define the SVG container and margins
+      const svg = d3.select("#chart");
+      const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+      const width = +svg.attr("width") - margin.left - margin.right;
+      const height = +svg.attr("height") - margin.top - margin.bottom;
+      const g = svg
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      // Parse the date
+      const parseTime = d3.timeParse("%Y-%m-%d");
+      data.forEach((d) => {
+        d.date = parseTime(d.date);
+        d.value = +d.value;
+      });
+
+      console.log(data);
+      // Create scales for x and y
+      const xScale = d3.scaleTime().range([0, width]);
+      const yScale = d3.scaleLinear().range([height, 0]);
+
+      xScale.domain(d3.extent(data, (d) => d.date));
+      yScale.domain([0, d3.max(data, (d) => d.value)]);
+
+      // Create the line generator
+      const line = d3
+        .line()
+        .x((d) => xScale(d.date))
+        .y((d) => yScale(d.value));
+
+      // Append the path for the line chart
+      g.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", line)
+        .attr("fill", "none")
+        .attr("stroke", "black");
+
+      // Add x and y axis
+      g.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(xScale));
+
+      g.append("g").call(d3.axisLeft(yScale));
+    </script>
+  </body>
+</html>
