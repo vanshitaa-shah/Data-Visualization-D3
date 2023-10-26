@@ -8,6 +8,7 @@ import Scatterplot from "./examples/Scatterplot";
 import A from "./examples/Temp";
 import PieChart2 from "./examples/Temp2";
 import DynamicscatterPlot from "./examples/DynamicscatterPlot";
+import AnimatedScatterPlot from "./examples/AnimatedScatterPlot";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
       {/* <LineChart /> */}
       <PieChart />
       <PieChart2 />
-      <DynamicscatterPlot />
+      {/* <DynamicscatterPlot /> */}
+      {/* <AnimatedScatterPlot /> */}
     </>
   );
 }

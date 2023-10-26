@@ -59,16 +59,23 @@ const Scatterplot = () => {
       .attr("height", height);
 
     //putting data points on chart
-    svg
+    const circles = svg
       .selectAll("circle")
       .data(marks)
       .join("circle")
       .attr("cx", (d) => d.x)
       .attr("cy", (d) => d.y)
-      .attr("r", 5)
-      .append("title")
-      .text((d) => d.title);
+      .attr("r", 5);
 
+    circles.on("mouseover", function () {
+      d3.select(this).attr("r", 7);
+    });
+
+    circles.on("mouseout", function () {
+      d3.select(this).attr("r", 5);
+    });
+
+    circles.append("title").text((d) => d.title);
     //changing styles if a>5
     svg
       .selectAll("circle")

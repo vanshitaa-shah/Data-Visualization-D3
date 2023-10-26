@@ -100,6 +100,8 @@ import * as d3 from "d3";
 import { axisBottom, axisLeft } from "d3";
 
 const DynamicscatterPlot = () => {
+  const [propertyIndex, setPropertyIndex] = useState(0);
+
   const csvUrl = [
     "https://gist.githubusercontent.com/", //Gist hosted url
     "netj/", //user-name
@@ -108,6 +110,12 @@ const DynamicscatterPlot = () => {
     "iris.csv", //file name
   ].join("");
 
+  const dataProperties = [
+    "sepal.length",
+    "sepal.width",
+    "petal.length",
+    "petal.width",
+  ];
   const width = 500;
   const height = 500;
 
@@ -118,16 +126,9 @@ const DynamicscatterPlot = () => {
     left: 50,
   };
 
-  const dataProperties = [
-    "sepal.length",
-    "sepal.width",
-    "petal.length",
-    "petal.width",
-  ];
-  const [propertyIndex, setPropertyIndex] = useState(0);
-
   const getNextProperty = () => {
     const nextIndex = (propertyIndex + 1) % dataProperties.length;
+    // console.log(propertyIndex, nextIndex);
     setPropertyIndex(nextIndex);
     return dataProperties[nextIndex];
   };
@@ -150,32 +151,30 @@ const DynamicscatterPlot = () => {
       });
 
       const selectedProperty = dataProperties[propertyIndex];
+      const xValue = (d) => d[selectedProperty];
+      const yValue = (d) => d["sepal.length"];
 
       const xScale = d3
         .scaleLinear()
-        .domain(d3.extent(data, (d) => d["petal.length"])) // You can customize this based on your preference
+        .domain(d3.extent(data, xValue)) // You can customize this based on your preference
         .range([margin.left, width - margin.right]);
 
       const yScale = d3
         .scaleLinear()
-        .domain(d3.extent(data, (d) => d[selectedProperty]))
+        .domain(d3.extent(data, yValue))
         .range([height - margin.top, margin.bottom]);
 
       const marks = data.map((d) => ({
-        x: xScale(d["petal.length"]), // You can customize this based on your preference
-        y: yScale(d[selectedProperty]),
-        title: `(${d["petal.length"]},${d[selectedProperty]})`,
+        x: xScale(xValue(d)), // You can customize this based on your preference
+        y: yScale(yValue(d)),
+        title: `(${xValue(d)}, ${yValue(d)})`,
       }));
-
-      // Clear the previous rendering
-      // svg.selectAll("*").remove();
 
       // Rendering
       svg
         .selectAll("circle")
         .data(marks)
-        .enter()
-        .append("circle")
+        .join("circle")
         .attr("cx", (d) => d.x)
         .attr("cy", (d) => d.y)
         .attr("r", 4)
