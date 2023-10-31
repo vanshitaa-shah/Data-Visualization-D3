@@ -18,7 +18,7 @@ function App() {
       <Chart2 />
       <Scatterplot />
       <InteractiveChart />
-      {/* <LineChart /> */}
+      <LineChart />
       <PieChart />
       <PieChart2 />
       {/* <DynamicscatterPlot /> */}

@@ -20,10 +20,14 @@ const PieChart = () => {
   }));
 
   const colors = ["red", "purple", "yellow", "green"];
-  const innerRadius = 0;
+  const innerRadius = 20;
   const outerRadius = 100;
 
   const arc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+  const popupArc = d3
+    .arc()
+    .innerRadius(innerRadius)
+    .outerRadius(outerRadius + 10);
   const pie = d3
     .pie()
     .sort(null)
@@ -66,6 +70,22 @@ const PieChart = () => {
       .attr("transform", (d) => "translate(" + arc.centroid(d) + ")")
       .attr("text-anchor", "middle")
       .text((d) => `${d.data.fraction.toFixed(2)}%`);
+    arcs.on("mouseover", function (d) {
+      const arcPath = d3.select(this).select("path");
+      arcPath.attr("d", (d) => popupArc(d));
+
+      // Add a border to the scaled part
+      arcPath
+        .attr("stroke", "White") // Border color
+        .attr("stroke-width", 1); // Border width
+    });
+    arcs.on("mouseout", function (d) {
+      const arcPath = d3.select(this).select("path");
+      arcPath.attr("d", arc);
+
+      // Remove the border when the mouse leaves
+      arcPath.attr("stroke", "none"); // Set stroke to "none" to remove the border
+    });
 
     return () => svg.remove();
   }, []);
