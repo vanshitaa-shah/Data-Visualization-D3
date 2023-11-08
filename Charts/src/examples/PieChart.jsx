@@ -12,6 +12,7 @@ const PieChart = () => {
 
   // Calculate the total value of all data points
   const total = piedata.reduce((sum, d) => sum + d.value, 0);
+  console.log(total);
 
   // Calculate the fractions of the whole
   const dataWithFractions = piedata.map((d) => ({
@@ -19,6 +20,7 @@ const PieChart = () => {
     fraction: (d.value / total) * 100,
   }));
 
+  console.log(dataWithFractions);
   const colors = ["red", "purple", "yellow", "green"];
   const innerRadius = 20;
   const outerRadius = 100;

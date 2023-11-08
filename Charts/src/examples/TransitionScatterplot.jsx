@@ -2,12 +2,12 @@ import React from "react";
 import * as d3 from "d3";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { useState } from "react";
 
 const Scatterplot = () => {
-  const scatterRef = useRef();
   const height = 400;
   const width = 450;
-  const data = [
+  const dataSet1 = [
     { a: "5", b: "13" },
     { a: "4", b: "13" },
     { a: "2", b: "17" },
@@ -22,6 +22,16 @@ const Scatterplot = () => {
     { a: "9", b: "14" },
     { a: "1", b: "16" },
   ];
+  const dataSet2 = [
+    { a: "5", b: "13" },
+    { a: "8", b: "33" },
+    { a: "2", b: "17" },
+    { a: "4", b: "21" },
+    { a: "7", b: "17" },
+  ];
+
+  const scatterRef = useRef();
+  const [data, setData] = useState(dataSet1);
 
   const margin = {
     top: 30,
@@ -63,7 +73,7 @@ const Scatterplot = () => {
       .attr("height", height)
       .style("background-color", "#eee");
 
-    // // Create and append the x-axis to the SVG
+    // Create and append the x-axis to the SVG
     svg
       .append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -75,16 +85,22 @@ const Scatterplot = () => {
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(yScale));
 
-    // Render data points as circles on the chart
-    const circles = svg
-      .selectAll("circle")
-      .data(marks)
-      .join("circle")
-      .attr("cx", (d) => d.x)
-      .attr("cy", (d) => d.y)
-      .attr("r", 5);
+    // // Render data points as circles on the chart
+    const circles = svg.selectAll("circle").data(marks).join("circle");
 
-    // // Add titles (tooltips) to the circles
+    circles.join(
+      (enter) => enter.append("circle").attr("r", 0),
+      (update) =>
+        update
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y)
+          .transition()
+          .duration(500)
+          .attr("r", 5),
+      (exit) => exit
+    );
+
+    // Add titles (tooltips) to the circles
     circles.append("title").text((d) => d.title);
 
     // Change circle fill color based on the value of 'b' in the data
@@ -108,17 +124,31 @@ const Scatterplot = () => {
         .attr("r", 5)
         .style("fill", (d) => (d.b > 20 ? "green" : "red"));
     });
-
     // Event - alert coordinates on click
     circles.on("click", function () {
       const dataPoint = d3.select(this).datum();
       alert(`hey you clicked on (${dataPoint.a}, ${dataPoint.b})`);
     });
+
     // Clean up the SVG when the component unmounts
     return () => svg.remove();
-  }, []);
+  }, [data]);
 
-  return <div ref={scatterRef}></div>;
+  return (
+    <>
+      <div ref={scatterRef}></div>
+      <button
+        className="change-data"
+        onClick={() =>
+          JSON.stringify(data) === JSON.stringify(dataSet1)
+            ? setData(dataSet2)
+            : setData(dataSet1)
+        }
+      >
+        Change data
+      </button>
+    </>
+  );
 };
 
 export default Scatterplot;

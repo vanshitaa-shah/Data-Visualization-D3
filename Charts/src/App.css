@@ -51,3 +51,8 @@ html {
 text {
   font-size: 15px;
 }
+
+.change-data {
+  margin: 20px 0px;
+  padding: 5px 10px;
+}
