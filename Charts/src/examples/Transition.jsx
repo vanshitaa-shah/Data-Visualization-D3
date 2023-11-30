@@ -1,6 +1,6 @@
 import * as d3 from "d3";
-import { useEffect, useRef } from "react";
-import { scaleBand } from "d3";
+import { useEffect } from "react";
+
 function A() {
   useEffect(() => {
     const svg = d3

@@ -1,35 +1,36 @@
 import React, { useState } from "react";
 import * as d3 from "d3";
 
+//variables and constants
+const initialData = [
+  {
+    name: "Car",
+    value: 10,
+  },
+  {
+    name: "Food",
+    value: 3,
+  },
+  {
+    name: "Telephone",
+    value: 9,
+  },
+  {
+    name: "Electricity",
+    value: 7,
+  },
+  {
+    name: "Cinema",
+    value: 7,
+  },
+];
+
+const width = 500;
+const height = 150;
+const padding = 20;
+const maxValue = 20; // Maximum data value
+
 const LineChart = () => {
-  const initialData = [
-    {
-      name: "Car",
-      value: 10,
-    },
-    {
-      name: "Food",
-      value: 3,
-    },
-    {
-      name: "Telephone",
-      value: 9,
-    },
-    {
-      name: "Electricity",
-      value: 7,
-    },
-    {
-      name: "Cinema",
-      value: 7,
-    },
-  ];
-
-  const width = 500;
-  const height = 150;
-  const padding = 20;
-  const maxValue = 20; // Maximum data value
-
   const [chartdata, setChartdata] = useState(initialData);
 
   return (

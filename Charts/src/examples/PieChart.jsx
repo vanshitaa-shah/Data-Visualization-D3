@@ -12,7 +12,6 @@ const PieChart = () => {
 
   // Calculate the total value of all data points
   const total = piedata.reduce((sum, d) => sum + d.value, 0);
-  console.log(total);
 
   // Calculate the fractions of the whole
   const dataWithFractions = piedata.map((d) => ({
@@ -20,7 +19,6 @@ const PieChart = () => {
     fraction: (d.value / total) * 100,
   }));
 
-  console.log(dataWithFractions);
   const colors = ["red", "purple", "yellow", "green"];
   const innerRadius = 20;
   const outerRadius = 100;
@@ -58,6 +56,7 @@ const PieChart = () => {
       .attr("fill", (d, i) => colors[i])
       .transition()
       .duration(1000)
+      //Tween function
       .attrTween("d", function (d) {
         var i = d3.interpolate(d.endAngle, d.startAngle);
         return function (t) {
@@ -72,6 +71,7 @@ const PieChart = () => {
       .attr("transform", (d) => "translate(" + arc.centroid(d) + ")")
       .attr("text-anchor", "middle")
       .text((d) => `${d.data.fraction.toFixed(2)}%`);
+
     arcs.on("mouseover", function (d) {
       const arcPath = d3.select(this).select("path");
       arcPath.attr("d", (d) => popupArc(d));

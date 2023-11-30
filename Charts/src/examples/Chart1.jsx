@@ -5,10 +5,12 @@ import * as d3 from "d3";
 
 //simple bar chart using D3
 
+// variables and constants
+const w = 250;
+const h = 200;
+
 const Chart1 = () => {
   const myRef = useRef();
-  const w = 250;
-  const h = 200;
 
   useEffect(() => {
     const accessToRef = d3

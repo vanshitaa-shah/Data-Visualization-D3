@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { useRef } from "react";
 import * as d3 from "d3";
 
+//variables and constants
+const w = 250;
+const h = 200;
+const data = [10, 35, 25, 15, 30];
+
 const Chart2 = () => {
   useEffect(() => {
-    const w = 250;
-    const h = 200;
-    const data = [10, 35, 25, 15, 30];
-
     const chartContainer = d3
       .select(".barChart")
       .append("svg")

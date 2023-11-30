@@ -7,22 +7,25 @@ import PieChart from "./examples/PieChart";
 import Scatterplot from "./examples/Scatterplot";
 import Transition from "./examples/Transition";
 import TransitionScatterplot from "./examples/TransitionScatterplot";
-import DynamicscatterPlot from "./examples/DynamicscatterPlot";
 import AnimatedScatterPlot from "./examples/AnimatedScatterPlot";
 
 function App() {
   return (
     <>
-      {/* <Transition /> */}
-      {/* <Scatterplot /> */}
+      <h2>Bar Chart</h2>
+      <InteractiveChart />
+      <hr />
+      <h2>Scatterplot for iris dataset</h2>
+      <AnimatedScatterPlot />
+      <hr />
+      <h2>Pie chart : with animation and events</h2>
+      <PieChart />
+      {/* <Transition />
+      <Scatterplot />
       <TransitionScatterplot />
-      {/* <Chart1 /> */}
-      {/* <Chart2 /> */}
-      {/* <InteractiveChart /> */}
-      {/* <LineChart /> */}
-      {/* <PieChart /> */}
-      {/* <DynamicscatterPlot /> */}
-      {/* <AnimatedScatterPlot /> */}
+      <Chart1 />
+      <Chart2 />
+      <LineChart /> */}
     </>
   );
 }
